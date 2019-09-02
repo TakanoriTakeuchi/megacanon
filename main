@@ -1,0 +1,368 @@
+
+//バルブを接続するピン
+const int B53 = 53;
+const int B52 = 52;
+const int B51 = 51;
+const int B50 = 50;
+const int B49 = 49;
+const int B48 = 48;
+const int B47 = 47;
+const int B46 = 46;
+const int B45 = 45;
+const int B44 = 44;
+const int B43 = 43;
+const int B42 = 42;
+const int B41 = 41;
+//発射スイッチピン
+const int GO22 = 22;
+
+//モード切替ピン
+const int BL24 = 24;
+const int AL26 = 26;
+const int SG28 = 28;
+
+//計算ピン
+const int c24 = 33;
+const int c26 = 31;
+const int c28 = 32;
+
+//代数
+int a = 0;
+int i ;
+int var = 0;
+
+
+void setup() {
+
+  //バルブを接続するピンを出力用として設定
+  pinMode(B53, OUTPUT);
+  pinMode(B52, OUTPUT);
+  pinMode(B51, OUTPUT);
+  pinMode(B50, OUTPUT);
+  pinMode(B49, OUTPUT);
+  pinMode(B48, OUTPUT);
+  pinMode(B47, OUTPUT);
+  pinMode(B46, OUTPUT);
+  pinMode(B45, OUTPUT);
+  pinMode(B44, OUTPUT);
+  pinMode(B43, OUTPUT);
+  pinMode(B42, OUTPUT);
+  pinMode(B41, OUTPUT);
+  //発射ピンを入力用に設定
+  pinMode(GO22, INPUT);
+
+  //モード切替ピンを入力用に設定
+  pinMode(BL24, INPUT);
+  pinMode(AL26, INPUT);
+  pinMode(SG28, INPUT);
+
+
+  //計算ピンを出力用に設定
+  pinMode(c24, OUTPUT);
+  pinMode(c26, OUTPUT);
+  pinMode(c28, OUTPUT);
+  //バルブを閉状態にする
+  digitalWrite(B53, HIGH);
+  digitalWrite(B52, HIGH);
+  digitalWrite(B51, HIGH);
+  digitalWrite(B50, HIGH);
+  digitalWrite(B49, HIGH);
+  digitalWrite(B48, HIGH);
+  digitalWrite(B47, HIGH);
+  digitalWrite(B46, HIGH);
+  digitalWrite(B45, HIGH);
+  digitalWrite(B44, HIGH);
+  digitalWrite(B43, HIGH);
+  digitalWrite(B42, HIGH);
+  digitalWrite(B41, HIGH);
+  //発射ピン状態リセット
+  digitalWrite(GO22, HIGH);
+  //モードリセット
+  digitalWrite(BL24, HIGH);
+  digitalWrite(AL26, HIGH);
+  digitalWrite(SG28, HIGH);
+  //計算ピンリセット
+  digitalWrite(c24, HIGH);
+  digitalWrite(c26, HIGH);
+  digitalWrite(c28, HIGH);
+
+
+}
+
+void loop() {
+  //連射モード
+  if (digitalRead(BL24) == LOW) {
+    digitalWrite(c24, LOW);
+    digitalWrite(c26, HIGH);
+    digitalWrite(c28, HIGH);
+  }
+  //全射モード
+  if (digitalRead(AL26) == LOW) {
+    digitalWrite(c24, HIGH);
+    digitalWrite(c26, LOW);
+    digitalWrite(c28, HIGH);
+  }
+  //単射モード
+  if (digitalRead(SG28) == LOW) {
+    digitalWrite(c24, HIGH);
+    digitalWrite(c26, HIGH);
+    digitalWrite(c28, LOW);
+  }
+  //単射リセット
+      if (digitalRead(c28) == HIGH) {
+     a=0;
+    }
+  //連射モード+発射ボタン作動時
+  if ((digitalRead(c24) == LOW) && (digitalRead(c26) == HIGH) && (digitalRead(c28) == HIGH) && (digitalRead(GO22) == LOW)) {
+
+    int buttonState53 = digitalRead(c24);
+    digitalWrite(B53, buttonState53);
+    delay(200);
+    digitalWrite(B53, HIGH);
+    int buttonState52 = digitalRead(c24);
+    digitalWrite(B52, buttonState52);
+    delay(200);
+    digitalWrite(B52, HIGH);
+    int buttonState51 = digitalRead(c24);
+    digitalWrite(B51, buttonState51);
+    delay(200);
+    digitalWrite(B51, HIGH);
+    int buttonState50 = digitalRead(c24);
+    digitalWrite(B50, buttonState50);
+    delay(200);
+    digitalWrite(B50, HIGH);
+    int buttonState49 = digitalRead(c24);
+    digitalWrite(B49, buttonState49);
+    delay(200);
+    digitalWrite(B49, HIGH);
+    int buttonState48 = digitalRead(c24);
+    digitalWrite(B48, buttonState48);
+    delay(200);
+    digitalWrite(B48, HIGH);
+    int buttonState47 = digitalRead(c24);
+    digitalWrite(B47, buttonState47);
+    delay(200);
+    digitalWrite(B47, HIGH);
+    int buttonState46 = digitalRead(c24);
+    digitalWrite(B46, buttonState46);
+    delay(200);
+    digitalWrite(B46, HIGH);
+    int buttonState45 = digitalRead(c24);
+    digitalWrite(B45, buttonState45);
+    delay(200);
+    digitalWrite(B45, HIGH);
+    int buttonState44 = digitalRead(c24);
+    digitalWrite(B44, buttonState44);
+    delay(200);
+    digitalWrite(B44, HIGH);
+    int buttonState43 = digitalRead(c24);
+    digitalWrite(B43, buttonState43);
+    delay(200);
+    digitalWrite(B43, HIGH);
+    int buttonState42 = digitalRead(c24);
+    digitalWrite(B42, buttonState42);
+    delay(200);
+    digitalWrite(B42, HIGH);
+    int buttonState41 = digitalRead(c24);
+    digitalWrite(B41, buttonState41);
+    delay(200);
+    digitalWrite(B41, HIGH);
+    delay(1000);
+
+    digitalWrite(c24, HIGH);
+    digitalWrite(c26, HIGH);
+    digitalWrite(c28, HIGH);
+
+  }
+
+  //全射モード+発射ボタン作動時
+  else if ((digitalRead(c24) == HIGH) && (digitalRead(c26) == LOW) && (digitalRead(c28) == HIGH) && (digitalRead(GO22) == LOW)) {
+    int buttonState53 = digitalRead(c26);
+    digitalWrite(B53, buttonState53);
+    int buttonState52 = digitalRead(c26);
+    digitalWrite(B52, buttonState52);
+
+    int buttonState51 = digitalRead(c26);
+    digitalWrite(B51, buttonState51);
+
+    int buttonState50 = digitalRead(c26);
+    digitalWrite(B50, buttonState50);
+
+    int buttonState49 = digitalRead(c26);
+    digitalWrite(B49, buttonState49);
+
+    int buttonState48 = digitalRead(c26);
+    digitalWrite(B48, buttonState48);
+
+    int buttonState47 = digitalRead(c26);
+    digitalWrite(B47, buttonState47);
+
+    int buttonState46 = digitalRead(c26);
+    digitalWrite(B46, buttonState46);
+
+    int buttonState45 = digitalRead(c26);
+    digitalWrite(B45, buttonState45);
+
+    int buttonState44 = digitalRead(c26);
+    digitalWrite(B44, buttonState44);
+
+    int buttonState43 = digitalRead(c26);
+    digitalWrite(B43, buttonState43);
+
+    int buttonState42 = digitalRead(c26);
+    digitalWrite(B42, buttonState42);
+
+    int buttonState41 = digitalRead(c26);
+    digitalWrite(B41, buttonState41);
+    delay(200);
+
+    digitalWrite(B53, HIGH);
+    digitalWrite(B52, HIGH);
+    digitalWrite(B51, HIGH);
+    digitalWrite(B50, HIGH);
+    digitalWrite(B49, HIGH);
+    digitalWrite(B48, HIGH);
+    digitalWrite(B47, HIGH);
+    digitalWrite(B46, HIGH);
+    digitalWrite(B45, HIGH);
+    digitalWrite(B44, HIGH);
+    digitalWrite(B43, HIGH);
+    digitalWrite(B42, HIGH);
+    digitalWrite(B41, HIGH);
+    delay(1000);
+
+    digitalWrite(c24, HIGH);
+    digitalWrite(c26, HIGH);
+    digitalWrite(c28, HIGH);
+
+  }
+  
+  //単射モード+発射ボタン作動時
+  else if ((digitalRead(c24) == HIGH) && (digitalRead(c26) == HIGH) && (digitalRead(c28) == LOW) && (digitalRead(SG28) == LOW)) {
+    if (digitalRead(GO22) == HIGH) {
+      a++; //押されたときにaに１を加える
+    }
+    while (digitalRead(GO22) == HIGH) {     //離すのを待つ
+      if (digitalRead(GO22) == LOW) {
+        break; //上りエッジで進む
+      }
+    }
+    if ((a == 1) && (digitalRead(SG28) == LOW)) {
+      digitalWrite(B53, HIGH);
+      digitalWrite(B52, HIGH);
+      digitalWrite(B51, HIGH);
+      digitalWrite(B50, HIGH);
+      digitalWrite(B49, HIGH);
+      digitalWrite(B48, HIGH);
+      digitalWrite(B47, HIGH);
+      digitalWrite(B46, HIGH);
+      digitalWrite(B45, HIGH);
+      digitalWrite(B44, HIGH);
+      digitalWrite(B43, HIGH);
+      digitalWrite(B42, HIGH);
+      digitalWrite(B41, HIGH);
+    }
+    if ( (a == 2) && (digitalRead(SG28) == LOW)) {
+      digitalWrite(B53, LOW);
+      delay(200);
+      digitalWrite(B53, HIGH);
+      delay(100);
+    }
+    if ((a == 3) && (digitalRead(SG28) == LOW)) {
+      digitalWrite(B52, LOW);
+      delay(200);
+      digitalWrite(B52, HIGH);
+      delay(100);
+    }
+    if ((a == 4) && (digitalRead(SG28) == LOW)) {
+      digitalWrite(B51, LOW);
+      delay(200);
+      digitalWrite(B51, HIGH);
+      delay(100);
+    }
+    if ((a == 5) && (digitalRead(SG28)) == LOW) {
+      digitalWrite(B50, LOW);
+      delay(200);
+      digitalWrite(B50, HIGH);
+      delay(100);
+    }
+    if ((a == 6) && (digitalRead(SG28) == LOW)) {
+      digitalWrite(B49, LOW);
+      delay(200);
+      digitalWrite(B49, HIGH);
+      delay(100);
+    }
+    if ((a == 7) && (digitalRead(SG28) == LOW)) {
+      digitalWrite(B48, LOW);
+      delay(200);
+      digitalWrite(B48, HIGH);
+      delay(100);
+    }
+    if ((a == 8) && (digitalRead(SG28) == LOW)) {
+      digitalWrite(B47, LOW);
+      delay(200);
+      digitalWrite(B47, HIGH);
+      delay(100);
+    }
+    if ((a == 9) && (digitalRead(SG28) == LOW)) {
+      digitalWrite(B46, LOW);
+      delay(200);
+      digitalWrite(B46, HIGH);
+      delay(100);
+    }
+    if ((a == 10) && (digitalRead(SG28) == LOW)) {
+      digitalWrite(B45, LOW);
+      delay(200);
+      digitalWrite(B45, HIGH);
+      delay(100);
+       }
+      if ((a == 11) && (digitalRead(SG28) == LOW)) {
+        digitalWrite(B44, LOW);
+        delay(200);
+        digitalWrite(B44, HIGH);
+        delay(100);
+      }
+      if ((a == 12) && (digitalRead(SG28) == LOW)) {
+        digitalWrite(B43, LOW);
+        delay(200);
+        digitalWrite(B43, HIGH);
+        delay(100);
+      }
+      if ((a == 13) && (digitalRead(SG28) == LOW)) {
+        digitalWrite(B42, LOW);
+        delay(200);
+        digitalWrite(B42, HIGH);
+        delay(100);
+      }
+      if ((a == 14) && (digitalRead(SG28) == LOW)) {
+        digitalWrite(B41, LOW);
+        delay(200);
+        digitalWrite(B41, HIGH);
+        delay(100);
+      }
+         if ((a == 15) && (digitalRead(SG28) == LOW)) {
+      digitalWrite(B53, LOW);
+      digitalWrite(B52, LOW);
+      digitalWrite(B51, LOW);
+      digitalWrite(B50, LOW);
+      digitalWrite(B49, LOW);
+      digitalWrite(B48, LOW);
+      digitalWrite(B47, LOW);
+      digitalWrite(B46, LOW);
+      digitalWrite(B45, LOW);
+      digitalWrite(B44, LOW);
+      digitalWrite(B43, LOW);
+      digitalWrite(B42, LOW);
+      digitalWrite(B41, LOW);
+    }
+
+    if (a == 15) {                     //aが5になった時の処理
+      a = 0;                          //aをゼロにする
+      for (i = 10; i <= 13; i++) {    //繰り返し処理で全消灯
+        digitalWrite(i, LOW);
+      }
+    }
+    delay(100);                       //待機
+  }
+
+}
